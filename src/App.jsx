@@ -156,7 +156,7 @@ export default function App() {
 
       {gameOver ? (
         <div className="game-over">
-          <p>{guesses.some((guess) => guess.map(item => item.letter).join("") === currentWord) ? "You Win!" : "Game Over!"}</p>
+          <p>{guesses.some((guess) => guess.map(item => item.letter).join("") === currentWord) ? <p className="win">"You Win!"</p> : <p className="lose">"Game Over!"</p> }</p>
           <p>Correct word: {currentWord}</p>
           <button onClick={restartGame} className="restart-button">
             Restart

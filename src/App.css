@@ -222,3 +222,9 @@ body {
   font-size: 18px;
   font-weight: bold;
 }
+.game-over .win {
+  color: #2f7d4f;
+}
+.game-over .lose {
+  color: #ff1e40;
+}
