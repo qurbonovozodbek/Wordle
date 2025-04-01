@@ -100,7 +100,7 @@ export default function App() {
   }, []);
 
   const handleGuess = () => {
-    if (input.length !== 5 || gameOver) return; // Prevent guessing when game is over
+    if (input.length !== 5 || gameOver) return; 
 
     const feedback = Array(5).fill("gray");
 
@@ -119,7 +119,7 @@ export default function App() {
       setGameOver(true);
       setScore(score + 1);
     } else if (guesses.length === 5) {
-      setGameOver(true); // Game over after 6 guesses, including the last one
+      setGameOver(true);
     }
 
     setInput("");
