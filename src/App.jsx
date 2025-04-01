@@ -178,7 +178,7 @@ export default function App() {
       <input
         type="text"
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={(e) => setInput(e.target.value.toLocaleLowerCase())}
         onKeyDown={(e) => e.key === "Enter" && handleGuess()}
         className="input-box"
         placeholder="Type your guess..."
