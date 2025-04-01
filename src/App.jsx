@@ -93,11 +93,18 @@ export default function App() {
   const [input, setInput] = useState("");
   const [guesses, setGuesses] = useState([]);
   const [gameOver, setGameOver] = useState(false);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(() => {
+    const savedScore = localStorage.getItem("score");
+    return savedScore ? parseInt(savedScore) : 0;
+  });
 
   useEffect(() => {
     setCurrentWord(words[Math.floor(Math.random() * words.length)]);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("score", score);
+  }, [score]);
 
   const handleGuess = () => {
     if (input.length !== 5 || gameOver) return; 
@@ -129,9 +136,13 @@ export default function App() {
     setGuesses([]);
     setInput("");
     setGameOver(false);
-    setScore(0);
     setCurrentWord(words[Math.floor(Math.random() * words.length)]);
   };
+
+  console.log(input);
+  console.log(currentWord);
+  
+  
 
   return (
     <div className="game-container">
@@ -145,7 +156,7 @@ export default function App() {
 
       {gameOver ? (
         <div className="game-over">
-          <p>{input === currentWord ? "You Win!" : "Game Over!"}</p>
+          <p>{guesses.some((guess) => guess.map(item => item.letter).join("") === currentWord) ? "You Win!" : "Game Over!"}</p>
           <p>Correct word: {currentWord}</p>
           <button onClick={restartGame} className="restart-button">
             Restart
@@ -162,6 +173,7 @@ export default function App() {
           </div>
         ))
       )}
+      
 
       <input
         type="text"
